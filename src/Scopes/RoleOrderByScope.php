@@ -18,7 +18,7 @@ class RoleOrderByScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         if (!app()->runningInConsole()) {
-            $builder->orderBy('roles.display_name', 'asc');
+            $builder->orderBy('entrust_roles.display_name', 'asc');
         }
     }
 }

@@ -13,6 +13,8 @@ class Role extends Model
 
     use OptionTrait;
 
+    protected $table = 'entrust_roles';
+
     protected $fillable = [
         'name',
         'display_name',
@@ -39,12 +41,12 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany('App\Permission');
+        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Permission');
     }
 
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('ConfrariaWeb\user\Models\User');
     }
 
     public function steps()
@@ -58,12 +60,12 @@ class Role extends Model
      */
     public function usersRoles()
     {
-        return $this->belongsToMany('App\Role', 'role_allowed_role', 'role_id', 'role_allowed_id');
+        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Role', 'entrust_role_allowed_role', 'role_id', 'role_allowed_id');
     }
 
     public function allowedRoles()
     {
-        return $this->belongsToMany('App\Role', 'role_allowed_role', 'role_id', 'role_allowed_id');
+        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Role', 'entrust_role_allowed_role', 'role_id', 'role_allowed_id');
     }
 
     /**
@@ -72,7 +74,7 @@ class Role extends Model
      */
     public function usersStatuses()
     {
-        return $this->belongsToMany('App\Status', 'role_status_user');
+        return $this->belongsToMany('App\Status', 'entrust_role_status_user');
     }
 
     /**
@@ -81,7 +83,7 @@ class Role extends Model
      */
     public function tasksStatuses()
     {
-        return $this->belongsToMany('App\Status', 'role_status_task');
+        return $this->belongsToMany('App\Status', 'entrust_role_status_task');
     }
 
     /**
@@ -89,7 +91,7 @@ class Role extends Model
      */
     public function stepWhenCreatingUser()
     {
-        return $this->belongsToMany('App\Step', 'role_step_when_creating_user');
+        return $this->belongsToMany('App\Step', 'entrust_role_step_when_creating_user');
     }
 
 

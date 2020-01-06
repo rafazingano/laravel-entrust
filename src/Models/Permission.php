@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
 
+    protected $table = 'entrust_permissions';
+
     protected $fillable = [
         'name',
         'display_name',
