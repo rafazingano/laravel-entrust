@@ -1,0 +1,31 @@
+{
+    "name": "confrariaweb/laravel-entrust",
+    "description": "Profile and permission package for laravel",
+    "keywords": [
+        "entrust",
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Rafael Zingano",
+            "email": "confrariaweb@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ConfrariaWeb\\Entrust\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ConfrariaWeb\\Entrust\\Providers\\EntrustServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
