@@ -2,9 +2,12 @@
 
 Base package for all other laravel packages
 
-## layouts
+## Install
 
-Include for icon usage the following google library <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+Incluir no array em app/http/kernel.php na variavel $routeMiddleware:
+```php
+'check.permission' => \ConfrariaWeb\Entrust\Middleware\CheckPermission::class,
+```
 
 ## License
 
