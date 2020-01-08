@@ -5,8 +5,9 @@ namespace ConfrariaWeb\Entrust\Models;
 use ConfrariaWeb\Entrust\Scopes\RoleAllowedScope;
 use ConfrariaWeb\Entrust\Scopes\RoleUsersScope;
 use ConfrariaWeb\Entrust\Scopes\RoleOrderByScope;
-use Illuminate\Database\Eloquent\Model;
 use ConfrariaWeb\Option\Traits\OptionTrait;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 
 class Role extends Model
 {
@@ -26,15 +27,14 @@ class Role extends Model
         'settings' => 'collection'
     ];
 
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
+    public function __construct()
+    {
+        $this->table = Config::get('cw_entrust.entrust_roles');
+    }
+
     protected static function boot()
     {
         parent::boot();
-        static::addGlobalScope(new RoleUsersScope);
         static::addGlobalScope(new RoleOrderByScope);
         static::addGlobalScope(new RoleAllowedScope);
     }

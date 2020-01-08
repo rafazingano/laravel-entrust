@@ -33,7 +33,7 @@ class EntrustServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/../Databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'entrust');
-        $this->publishes([__DIR__ . '/../../config/cw_entrust.php' => config_path('cw_entrust.php')], 'entrust');
+        $this->publishes([__DIR__ . '/../../config/cw_entrust.php' => config_path('cw_entrust.php')], 'cw_entrust');
 
         Form::component('roleform', 'entrust::components.role_form', ['name' => 'role', 'value' => [], 'attributes' => []]);
         Form::component('permissionform', 'entrust::components.permission_form', ['name' => 'permission', 'value' => [], 'attributes' => []]);
