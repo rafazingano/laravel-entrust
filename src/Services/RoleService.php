@@ -16,7 +16,7 @@ class RoleService
 
     function pluck()
     {
-        return $this->obj->all()->pluck('display_name', 'id');
+        return $this->obj->pluck('display_name', 'id');
     }
 
 
