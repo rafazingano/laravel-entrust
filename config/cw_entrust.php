@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'layout' => env('CW_LAYOUT', 'meridien::layouts.app'),
-    'views' => env('CW_VIEWS', 'location::'),
+    'layout' => env('CW_LAYOUT', 'layouts.app'),
+    'views' => env('CW_VIEWS', 'entrust::'),
 
     'user' => 'App\User',
     'users_table' => 'users',

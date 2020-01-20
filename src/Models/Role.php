@@ -29,7 +29,7 @@ class Role extends Model
 
     public function __construct()
     {
-        $this->table = Config::get('cw_entrust.entrust_roles');
+        $this->table = Config::get('cw_entrust.roles_table');
     }
 
     protected static function boot()
