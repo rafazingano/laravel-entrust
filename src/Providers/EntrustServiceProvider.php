@@ -30,6 +30,7 @@ class EntrustServiceProvider extends ServiceProvider
         }
 
         $this->loadViewsFrom(__DIR__ . '/../Views', 'entrust');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/../Databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'entrust');

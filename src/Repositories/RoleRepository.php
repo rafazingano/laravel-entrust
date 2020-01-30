@@ -21,6 +21,7 @@ class RoleRepository implements RoleContract
         if (isset($data['permissions'])) {
             $obj->permissions()->sync($data['permissions']);
         }
+
         if (isset($data['stepWhenCreatingUser'])) {
             $obj->stepWhenCreatingUser()->sync($data['stepWhenCreatingUser']);
         }
@@ -41,6 +42,24 @@ class RoleRepository implements RoleContract
             $obj->usersRoles()->sync($data['usersRoles']);
         }
 
+    }
+
+    public function where(array $data, $take = null, $skip = false, $select = false)
+    {
+
+        if (isset($data['id'])) {
+            $this->obj = $this->obj->where('id', $data['id']);
+        }
+
+        if (isset($data['name'])) {
+            $this->obj = $this->obj->where('name', 'like', '%' . $data['name'] . '%');
+        }
+
+        if (isset($data['display_name'])) {
+            $this->obj = $this->obj->where('display_name', 'like', '%' . $data['display_name'] . '%');
+        }
+
+        return $this;
     }
 
 }

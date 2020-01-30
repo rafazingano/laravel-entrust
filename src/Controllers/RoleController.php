@@ -3,6 +3,7 @@
 namespace ConfrariaWeb\Entrust\Controllers;
 
 use App\Http\Controllers\Controller;
+use ConfrariaWeb\Entrust\Resources\Select2RoleResource;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -13,6 +14,14 @@ class RoleController extends Controller
     public function __construct()
     {
         $this->data = [];
+    }
+
+    public function select2(Request $request)
+    {
+        $data = $request->all();
+        $data['name'] = isset($data['term'])? $data['term'] : NULL;
+        $status = resolve('RoleService')->where($data)->get();
+        return Select2RoleResource::collection($status);
     }
 
     public function index()
