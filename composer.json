@@ -1,5 +1,6 @@
 {
     "name": "confrariaweb/laravel-entrust",
+    "version": "dev-master",
     "description": "Profile and permission package for laravel",
     "keywords": [
         "entrust",
