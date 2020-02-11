@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateEntrustTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return  void
-     */
+
     public function up()
     {
         Schema::create('entrust_roles', function (Blueprint $table) {
@@ -68,7 +64,7 @@ class CreateEntrustTable extends Migration
             $table->primary(['permission_id', 'role_id']);
         });
 
-        Schema::create('entrust_option_role', function (Blueprint $table) {
+        Schema::create('option_role', function (Blueprint $table) {
             $table->unsignedBigInteger('option_id');
             $table->unsignedBigInteger('role_id');
 
@@ -77,6 +73,7 @@ class CreateEntrustTable extends Migration
                 ->on('options')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
             $table->foreign('role_id')
                 ->references('id')
                 ->on('entrust_roles')
@@ -85,113 +82,12 @@ class CreateEntrustTable extends Migration
 
             $table->primary(['option_id', 'role_id']);
         });
-/*
-        Schema::create('role_step', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('step_id');
 
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('roles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('step_id')
-                ->references('id')
-                ->on('steps')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->primary(['role_id', 'step_id']);
-        });
-
-        Schema::create('role_status_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('status_id');
-
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('roles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('status_id')
-                ->references('id')
-                ->on('statuses')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->primary(['role_id', 'status_id']);
-        });
-
-        Schema::create('role_status_task', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('status_id');
-
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('roles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('status_id')
-                ->references('id')
-                ->on('statuses')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->primary(['role_id', 'status_id']);
-        });
-*/
-        Schema::create('entrust_role_allowed_role', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('role_allowed_id');
-
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('entrust_roles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('role_allowed_id')
-                ->references('id')
-                ->on('entrust_roles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->primary(['role_id', 'role_allowed_id']);
-        });
-/*
-        Schema::create('role_step_when_creating_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('step_id');
-
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('entrust_roles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->foreign('step_id')
-                ->references('id')
-                ->on('steps')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            $table->primary(['role_id', 'step_id']);
-        });
-*/
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return  void
-     */
     public function down()
     {
-        //Schema::dropIfExists('role_step_when_creating_user');
-        Schema::dropIfExists('entrust_role_allowed_role');
-        //Schema::dropIfExists('role_status_task');
-        //Schema::dropIfExists('role_status_user');
-        //Schema::dropIfExists('role_step');
-        Schema::dropIfExists('entrust_option_role');
-
+        Schema::dropIfExists('option_role');
         Schema::dropIfExists('entrust_permission_role');
         Schema::dropIfExists('entrust_permissions');
         Schema::dropIfExists('entrust_role_user');
