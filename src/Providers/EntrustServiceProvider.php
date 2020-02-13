@@ -43,7 +43,7 @@ class EntrustServiceProvider extends ServiceProvider
             return "<?php if(auth()->user()->hasRole({$expression})) : ?>";
         });
 
-        Blade::directive('endrole', function($expression) {
+        Blade::directive('endrole', function() {
             return "<?php endif; ?>";
         });
 
@@ -51,7 +51,7 @@ class EntrustServiceProvider extends ServiceProvider
             return "<?php if(auth()->user()->hasPermission({$expression})) : ?>";
         });
 
-        Blade::directive('endpermission', function($expression) {
+        Blade::directive('endpermission', function() {
             return "<?php endif; ?>";
         });
 
