@@ -40,7 +40,7 @@ class RoleController extends Controller
         $this->data['statuses'] = resolve('UserStatusService')->pluck();
         $this->data['options'] = resolve('OptionService')->pluck();
         $this->data['roles'] = resolve('RoleService')->pluck();
-        $this->data['steps'] = resolve('UserStepService')->pluck();
+        $this->data['steps'] = resolve('CrmStepService')->pluck();
         $this->data['types_tasks'] = resolve('TaskTypeService')->pluck();
         $this->data['permissions'] = resolve('PermissionService')->pluck();
         return view(config('cw_entrust.views') . 'entrust.roles.create', $this->data);
@@ -84,7 +84,7 @@ class RoleController extends Controller
         $this->data['statuses'] = resolve('StatusService')->pluck();
         $this->data['options'] = resolve('OptionService')->pluck();
         $this->data['roles'] = resolve('RoleService')->pluck();
-        $this->data['steps'] = resolve('StepService')->pluck();
+        $this->data['steps'] = resolve('CrmStepService')->pluck();
         $this->data['types_tasks'] = resolve('TaskTypeService')->pluck();
         $this->data['permissions'] = resolve('PermissionService')->pluck();
         $this->data['role'] = resolve('RoleService')->find($id);
