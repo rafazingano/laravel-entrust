@@ -17,4 +17,29 @@ return [
     'permissions_table' => 'entrust_permissions',
     'permission_role_table' => 'entrust_permission_role',
     'permission_foreign_key' => 'permission_id',
+
+    'permission' => 'ConfrariaWeb\Entrust\Models\Permission',
+    'permissions_table' => 'entrust_permissions',
+    'permission_role_table' => 'entrust_permission_role',
+    'permission_foreign_key' => 'permission_id',
+
+    'form' => [
+        /*
+         * Campos adicionais que podemos criar para serem salvos como "settings" no sistema
+         */
+        'settings' => [
+            'color' => [
+                'type' => 'color',
+                'name' => 'color',
+                'placeholder' => 'Cor do perfil',
+                'label' => 'Cor do perfil',
+            ],
+            'icon' => [
+                'type' => 'icon',
+                'name' => 'icon',
+                'placeholder' => 'Icone do perfil',
+                'label' => 'Icone do perfil',
+            ],
+        ]
+    ],
 ];

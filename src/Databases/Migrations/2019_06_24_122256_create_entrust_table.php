@@ -64,7 +64,7 @@ class CreateEntrustTable extends Migration
             $table->primary(['permission_id', 'role_id']);
         });
 
-        Schema::create('option_role', function (Blueprint $table) {
+        Schema::create('entrust_option_role', function (Blueprint $table) {
             $table->unsignedBigInteger('option_id');
             $table->unsignedBigInteger('role_id');
 
@@ -83,11 +83,31 @@ class CreateEntrustTable extends Migration
             $table->primary(['option_id', 'role_id']);
         });
 
+        Schema::create('entrust_role_step_when_creating_user', function (Blueprint $table) {
+            $table->unsignedBigInteger('step_id');
+            $table->unsignedBigInteger('role_id');
+
+            $table->foreign('step_id')
+                ->references('id')
+                ->on('crm_steps')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('role_id')
+                ->references('id')
+                ->on('entrust_roles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->primary(['step_id', 'role_id']);
+        });
+
     }
 
     public function down()
     {
-        Schema::dropIfExists('option_role');
+        Schema::dropIfExists('entrust_role_step_when_creating_user');
+        Schema::dropIfExists('entrust_option_role');
         Schema::dropIfExists('entrust_permission_role');
         Schema::dropIfExists('entrust_permissions');
         Schema::dropIfExists('entrust_role_user');

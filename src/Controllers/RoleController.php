@@ -54,9 +54,10 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role = resolve('RoleService')->create($request->all());
+        $data = $request->all();
+        $role = resolve('RoleService')->create($data);
         return redirect()
-            ->route('roles.edit', $role->id)
+            ->route('admin.roles.edit', $role->id)
             ->with('status', 'Perfil criado com sucesso!');
     }
 
@@ -81,7 +82,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $this->data['statuses'] = resolve('StatusService')->pluck();
+        $this->data['statuses'] = resolve('UserStatusService')->pluck();
         $this->data['options'] = resolve('OptionService')->pluck();
         $this->data['roles'] = resolve('RoleService')->pluck();
         $this->data['steps'] = resolve('CrmStepService')->pluck();
@@ -103,7 +104,7 @@ class RoleController extends Controller
     {
         $role = resolve('RoleService')->update($request->all(), $id);
         return redirect()
-            ->route('roles.edit', $role->id)
+            ->route('admin.roles.edit', $role->id)
             ->with('status', 'Perfil editado com sucesso!');
     }
 

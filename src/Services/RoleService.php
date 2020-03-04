@@ -19,5 +19,4 @@ class RoleService
         return $this->obj->pluck('display_name', 'id');
     }
 
-
 }

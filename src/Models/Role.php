@@ -19,7 +19,7 @@ class Role extends Model
         'name',
         'display_name',
         'description',
-        'settings'
+        'settings',
     ];
 
     protected $casts = [

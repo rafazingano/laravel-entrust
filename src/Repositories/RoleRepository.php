@@ -46,7 +46,6 @@ class RoleRepository implements RoleContract
 
     public function where(array $data, $take = null, $skip = false, $select = false)
     {
-
         if (isset($data['id'])) {
             $this->obj = $this->obj->where('id', $data['id']);
         }

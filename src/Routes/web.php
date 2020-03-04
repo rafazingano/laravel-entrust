@@ -6,14 +6,6 @@ Route::prefix('admin')
     ->namespace('ConfrariaWeb\Entrust\Controllers')
     ->group(function () {
 
-        /*
-        Route::prefix('roles')
-            ->name('roles.')
-            ->group(function () {
-
-
-            });
-        */
         Route::resource('roles', 'RoleController');
 
     });
