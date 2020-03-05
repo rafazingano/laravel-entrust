@@ -16,8 +16,9 @@ class Permission extends Model
         'description'
     ];
 
-    public function __construct()
+    public function __construct(array $attributes = [])
     {
+        parent::__construct($attributes);
         $this->table = Config::get('cw_entrust.permissions_table');
     }
 

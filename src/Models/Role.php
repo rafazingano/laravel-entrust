@@ -32,8 +32,9 @@ class Role extends Model
         static::addGlobalScope(new RoleOrderByScope);
     }
 
-    public function __construct()
+    public function __construct(array $attributes = [])
     {
+        parent::__construct($attributes);
         $this->table = Config::get('cw_entrust.roles_table');
     }
 
