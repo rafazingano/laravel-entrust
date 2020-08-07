@@ -1,4 +1,7 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
+
 Route::middleware(['auth:api'])
     ->name('api.')
     ->prefix('api')

@@ -32,7 +32,7 @@ class EntrustServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Views', 'entrust');
         $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
-        $this->loadMigrationsFrom(__DIR__ . '/../Databases/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../../databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'entrust');
         $this->publishes([__DIR__ . '/../../config/cw_entrust.php' => config_path('cw_entrust.php')], 'cw_entrust');
 
