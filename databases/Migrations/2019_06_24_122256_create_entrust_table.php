@@ -9,7 +9,7 @@ class CreateEntrustTable extends Migration
 
     public function up()
     {
-        Schema::create('entrust_roles', function (Blueprint $table) {
+        Schema::create(config('cw_entrust.roles_table'), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
@@ -19,25 +19,25 @@ class CreateEntrustTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('entrust_role_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('role_id');
+        Schema::create(config('cw_entrust.role_user_table'), function (Blueprint $table) {
+            $table->unsignedBigInteger(config('cw_entrust.user_foreign_key'));
+            $table->unsignedBigInteger(config('cw_entrust.role_foreign_key'));
 
-            $table->foreign('user_id')
+            $table->foreign(config('cw_entrust.user_foreign_key'))
                 ->references('id')
-                ->on('users')
+                ->on(config('cw_entrust.users_table'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreign('role_id')
+            $table->foreign(config('cw_entrust.role_foreign_key'))
                 ->references('id')
-                ->on('entrust_roles')
+                ->on(config('cw_entrust.roles_table'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->primary(['user_id', 'role_id']);
+            $table->primary([config('cw_entrust.user_foreign_key'), config('cw_entrust.role_foreign_key')]);
         });
 
-        Schema::create('entrust_permissions', function (Blueprint $table) {
+        Schema::create(config('cw_entrust.permissions_table'), function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
@@ -46,51 +46,56 @@ class CreateEntrustTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('entrust_permission_role', function (Blueprint $table) {
-            $table->unsignedBigInteger('permission_id');
-            $table->unsignedBigInteger('role_id');
+        Schema::create(config('cw_entrust.permission_role_table'), function (Blueprint $table) {
+            $table->unsignedBigInteger(config('cw_entrust.permission_foreign_key'));
+            $table->unsignedBigInteger(config('cw_entrust.role_foreign_key'));
 
-            $table->foreign('permission_id')
+            $table->foreign(config('cw_entrust.permission_foreign_key'))
                 ->references('id')
-                ->on('entrust_permissions')
+                ->on(config('cw_entrust.permissions_table'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreign('role_id')
+            $table->foreign(config('cw_entrust.role_foreign_key'))
                 ->references('id')
-                ->on('entrust_roles')
+                ->on(config('cw_entrust.roles_table'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            $table->primary(['permission_id', 'role_id']);
+            $table->primary([config('cw_entrust.permission_foreign_key'), config('cw_entrust.role_foreign_key')]);
         });
 
-        Schema::create('entrust_option_role', function (Blueprint $table) {
-            $table->unsignedBigInteger('option_id');
-            $table->unsignedBigInteger('role_id');
+        if (
+            !Schema::hasTable('entrust_option_role') && 
+            Schema::hasTable('options')
+        ) {
+            Schema::create('entrust_option_role', function (Blueprint $table) {
+                $table->unsignedBigInteger('option_id');
+                $table->unsignedBigInteger(config('cw_entrust.role_foreign_key'));
 
-            $table->foreign('option_id')
-                ->references('id')
-                ->on('options')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                $table->foreign('option_id')
+                    ->references('id')
+                    ->on('options')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
 
-            $table->foreign('role_id')
-                ->references('id')
-                ->on('entrust_roles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                $table->foreign(config('cw_entrust.role_foreign_key'))
+                    ->references('id')
+                    ->on(config('cw_entrust.roles_table'))
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
 
-            $table->primary(['option_id', 'role_id']);
-        });
+                $table->primary(['option_id', config('cw_entrust.role_foreign_key')]);
+            });
+        }
 
     }
 
     public function down()
     {
         Schema::dropIfExists('entrust_option_role');
-        Schema::dropIfExists('entrust_permission_role');
-        Schema::dropIfExists('entrust_permissions');
-        Schema::dropIfExists('entrust_role_user');
-        Schema::dropIfExists('entrust_roles');
+        Schema::dropIfExists(config('cw_entrust.permission_role_table'));
+        Schema::dropIfExists(config('cw_entrust.permissions_table'));
+        Schema::dropIfExists(config('cw_entrust.role_user_table'));
+        Schema::dropIfExists(config('cw_entrust.roles_table'));
     }
 }
