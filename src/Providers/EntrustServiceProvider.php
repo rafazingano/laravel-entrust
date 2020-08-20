@@ -2,7 +2,6 @@
 
 namespace ConfrariaWeb\Entrust\Providers;
 
-use Collective\Html\FormFacade as Form;
 use ConfrariaWeb\Entrust\Commands\CheckPackage;
 use ConfrariaWeb\Entrust\Contracts\PermissionContract;
 use ConfrariaWeb\Entrust\Contracts\RoleContract;
@@ -35,9 +34,6 @@ class EntrustServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../../databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'entrust');
         $this->publishes([__DIR__ . '/../../config/cw_entrust.php' => config_path('cw_entrust.php')], 'cw_entrust');
-
-        Form::component('roleform', 'entrust::components.role_form', ['name' => 'role', 'value' => [], 'attributes' => []]);
-        Form::component('permissionform', 'entrust::components.permission_form', ['name' => 'permission', 'value' => [], 'attributes' => []]);
 
         Blade::directive('role', function($expression) {
             return "<?php if(auth()->user()->hasRole({$expression})) : ?>";
