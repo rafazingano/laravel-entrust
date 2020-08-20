@@ -29,7 +29,7 @@ php artisan vendor:publish --provider="ConfrariaWeb\Entrust\Providers\EntrustSer
 We are almost there, the next commands are to restructure the configuration cache and run the migration of the tables respectively.
 At the command terminal, type the following commands.
 ```php
-php artisan route:cache
+php artisan config:cache
 php artisan migrate
 ```
 Performing the above procedure the package is already available for use.
