@@ -3,7 +3,7 @@ This is a simple, easy to use access control (ACL) package for laravel.
 
 Package page: 
 [https://confrariaweb.github.io/laravel-entrust](https://confrariaweb.github.io/laravel-entrust)
-## Install
+## Package installation
 > Before starting, you need to make sure that the database access settings are configured.
 
 
@@ -38,6 +38,7 @@ php artisan db:seed
 ```
 Performing the above procedure the package is already available for use.
 ## Package usage
+This package can be used at different points in your application.
 ### Use in middlewares
 To use the middleware, it uses the route name as a permission parameter.
 In the example below it checks if the user has the 'admin.profile' permission to access the route.
