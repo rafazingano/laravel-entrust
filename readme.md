@@ -20,7 +20,17 @@ The next configuration step you should only use if you are not using the "confra
 class User extends Authenticatable
 {
 	//add this call to the application's user model
-	use ConfrariaWeb\Entrust\Traits\EntrustTrait;
+	use \ConfrariaWeb\Entrust\Traits\EntrustTrait;
+```
+The next step is to place the configuration file in the "/config" directory.
+```php
+php artisan vendor:publish --provider="ConfrariaWeb\Entrust\Providers\EntrustServiceProvider"
+```
+We are almost there, the next commands are to restructure the configuration cache and run the migration of the tables respectively.
+At the command terminal, type the following commands.
+```php
+php artisan route:cache
+php artisan migrate
 ```
 Performing the above procedure the package is already available for use.
 ## Use in middlewares
