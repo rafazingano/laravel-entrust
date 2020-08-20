@@ -6,6 +6,7 @@ Package page:
 ## Install
 > Before starting, you need to make sure that the database access settings are configured.
 
+
 In your terminal just use the command line below.
 ```php
 composer require confrariaweb/laravel-entrust
