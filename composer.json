@@ -1,8 +1,10 @@
 {
     "name": "confrariaweb/laravel-entrust",
     "version": "dev-master",
-    "description": "Profile and permission package for laravel",
+    "description": "laravel access control package - ACL",
     "keywords": [
+        "acl",
+        "access control",
         "entrust",
         "framework",
         "laravel"
@@ -15,7 +17,11 @@
             "email": "confrariaweb@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "confrariaweb/laravel-vendor": "dev-master",
+        "laravelcollective/html": ">=6.0",
+        "staudenmeir/eloquent-has-many-deep": "^1.12"
+    },
     "autoload": {
         "psr-4": {
             "ConfrariaWeb\\Entrust\\": "src"
