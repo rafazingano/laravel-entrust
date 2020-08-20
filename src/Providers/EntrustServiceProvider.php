@@ -9,7 +9,7 @@ use ConfrariaWeb\Entrust\Repositories\PermissionRepository;
 use ConfrariaWeb\Entrust\Repositories\RoleRepository;
 use ConfrariaWeb\Entrust\Services\PermissionService;
 use ConfrariaWeb\Entrust\Services\RoleService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
