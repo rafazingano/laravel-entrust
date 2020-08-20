@@ -9,6 +9,8 @@ use ConfrariaWeb\Entrust\Repositories\PermissionRepository;
 use ConfrariaWeb\Entrust\Repositories\RoleRepository;
 use ConfrariaWeb\Entrust\Services\PermissionService;
 use ConfrariaWeb\Entrust\Services\RoleService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,7 +36,8 @@ class EntrustServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../../databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'entrust');
         $this->publishes([__DIR__ . '/../../config/cw_entrust.php' => config_path('cw_entrust.php')], 'cw_entrust');
-
+        $this->registerSeedsFrom(__DIR__.'/../database/seeds');
+        
         Blade::directive('role', function($expression) {
             return "<?php if(auth()->user()->hasRole({$expression})) : ?>";
         });
@@ -70,6 +73,25 @@ class EntrustServiceProvider extends ServiceProvider
             return new PermissionService($app->make(PermissionContract::class));
         });
 
+    }
+
+    protected function registerSeedsFrom($path)
+    {
+        foreach (glob("$path/*.php") as $filename)
+        {
+            include $filename;
+            $classes = get_declared_classes();
+            $class = end($classes);
+
+            $command = Request::server('argv', null);
+            if (is_array($command)) {
+                $command = implode(' ', $command);
+                if ($command == "artisan db:seed") {
+                    Artisan::call('db:seed', ['--class' => $class]);
+                }
+            }
+
+        }
     }
 
 }
