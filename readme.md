@@ -1,5 +1,6 @@
 # Package Entrust Laravel (ACL)
 This is a simple, easy to use access control (ACL) package for laravel.
+
 Package page: 
 [https://confrariaweb.github.io/laravel-entrust](https://confrariaweb.github.io/laravel-entrust)
 ## Install
