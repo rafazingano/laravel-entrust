@@ -24,7 +24,8 @@
     },
     "autoload": {
         "psr-4": {
-            "ConfrariaWeb\\Entrust\\": "src"
+            "ConfrariaWeb\\Entrust\\": "src",
+            "ConfrariaWeb\\Entrust\\Databases\\Seeds\\": "databases/Seeds"
         }
     },
     "extra": {
