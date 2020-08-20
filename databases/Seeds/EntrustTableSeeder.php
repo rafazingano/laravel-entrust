@@ -82,13 +82,15 @@ class DatabaseSeeder extends Seeder
 
     private function truncateTables()
     {
-        $this->command->info('Fazendo um truncate nas tabelas entrusts, sai da frente... ;/');
-        Schema::disableForeignKeyConstraints();
-        DB::table(config('cw_entrust.role_user_table'))->truncate();
-        DB::table(config('cw_entrust.permission_role_table'))->truncate();
-        DB::table(config('cw_entrust.roles_table'))->truncate();
-        DB::table(config('cw_entrust.permissions_table'))->truncate();
-        Schema::enableForeignKeyConstraints();
-        $this->command->info('Pronto, truncates feitos em entrust, acho que com sucesso :D');
+        if ($this->command->confirm('Deseja truncar todas as tabelas referentes ao entrust?')) {
+            $this->command->info('Fazendo um truncate nas tabelas entrusts, sai da frente... ;/');
+            Schema::disableForeignKeyConstraints();
+            DB::table(config('cw_entrust.role_user_table'))->truncate();
+            DB::table(config('cw_entrust.permission_role_table'))->truncate();
+            DB::table(config('cw_entrust.roles_table'))->truncate();
+            DB::table(config('cw_entrust.permissions_table'))->truncate();
+            Schema::enableForeignKeyConstraints();
+            $this->command->info('Pronto, truncates feitos em entrust, acho que com sucesso :D');
+        }
     }
 }
