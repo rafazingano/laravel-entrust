@@ -32,8 +32,13 @@ At the command terminal, type the following commands.
 php artisan config:cache
 php artisan migrate
 ```
+Optional: You can run the command below to create some items in the database, it is not mandatory and you can still modify them later if you find it convenient.
+```php
+php artisan db:seed
+```
 Performing the above procedure the package is already available for use.
-## Use in middlewares
+## Package usage
+### Use in middlewares
 To use the middleware, it uses the route name as a permission parameter.
 In the example below it checks if the user has the 'admin.profile' permission to access the route.
 ```php
@@ -41,7 +46,7 @@ Route::get('admin/profile', function () {
     //
 })->middleware('check.permission')->name('admin.profile');
 ```
-## Use in controllers
+### Use in controllers
 The proper way to use access control on controllers is as follows.
 #### By roles
 ```php
@@ -66,7 +71,7 @@ class  HomeController  extends  Controller
 	}
 }
 ```
-## Use in views
+### Use in views
 To do version control in views (.blade) you can use control by roles or permissions.
 #### By roles
 ```php
