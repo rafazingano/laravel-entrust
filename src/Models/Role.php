@@ -2,6 +2,7 @@
 
 namespace ConfrariaWeb\Entrust\Models;
 
+use ConfrariaWeb\Entrust\Scopes\AccountRoleScope;
 use ConfrariaWeb\Entrust\Scopes\RoleOrderByScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
@@ -23,10 +24,15 @@ class Role extends Model
         'settings' => 'collection'
     ];
 
-    protected static function boot()
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
     {
-        parent::boot();
         static::addGlobalScope(new RoleOrderByScope);
+        //static::addGlobalScope(new AccountRoleScope);
     }
 
     public function __construct(array $attributes = [])
@@ -37,22 +43,12 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Permission');
+        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Permission', Config::get('cw_entrust.permission_role_table'));
     }
 
     public function users()
     {
-        return $this->belongsToMany('ConfrariaWeb\User\Models\User');
-    }
-
-    public function steps()
-    {
-        return $this->belongsToMany('ConfrariaWeb\Crm\Models\Step', 'crm_role_step', 'role_id', 'step_id');
-    }
-
-    public function stepWhenCreatingUser()
-    {
-        return $this->belongsToMany('ConfrariaWeb\Crm\Models\Step', 'entrust_role_step_when_creating_user', 'role_id', 'step_id');
+        return $this->belongsToMany('App\User', Config::get('cw_entrust.role_user_table'));
     }
 
 }

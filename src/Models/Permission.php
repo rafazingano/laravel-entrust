@@ -22,4 +22,9 @@ class Permission extends Model
         $this->table = Config::get('cw_entrust.permissions_table');
     }
 
+    public function roles()
+    {
+        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Role', Config::get('cw_entrust.permission_role_table'));
+    }
+
 }

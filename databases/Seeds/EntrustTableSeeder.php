@@ -1,6 +1,7 @@
 <?php
 namespace ConfrariaWeb\Entrust\Databases\Seeds;
 
+use Illuminate\Console\Command;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -82,7 +83,7 @@ class DatabaseSeeder extends Seeder
 
     private function truncateTables()
     {
-        if ($this->command->confirm('Deseja truncar todas as tabelas referentes ao entrust?')) {
+        //if ($this->command->confirm('Deseja truncar todas as tabelas referentes ao entrust?')) {
             $this->command->info('Fazendo um truncate nas tabelas entrusts, sai da frente... ;/');
             Schema::disableForeignKeyConstraints();
             DB::table(config('cw_entrust.role_user_table'))->truncate();
@@ -91,6 +92,6 @@ class DatabaseSeeder extends Seeder
             DB::table(config('cw_entrust.permissions_table'))->truncate();
             Schema::enableForeignKeyConstraints();
             $this->command->info('Pronto, truncates feitos em entrust, acho que com sucesso :D');
-        }
+        //}
     }
 }

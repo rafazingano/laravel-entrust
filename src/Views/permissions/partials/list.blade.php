@@ -1,4 +1,4 @@
-<table class="table table-striped table-hover table-sm" id="roles-table">
+<table class="table table-striped table-hover table-sm" id="permissions-table">
     <thead>
         <tr>
             <th>Nome</th>
@@ -15,10 +15,10 @@
     <script>
         $.noConflict();
         jQuery(document).ready(function($) {
-            $('#roles-table').DataTable({
+            $('#permissions-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route("admin.roles.datatables") }}',
+                ajax: '{{ route("admin.permissions.datatables") }}',
                 columns: [{
                         data: 'name',
                         name: 'name'

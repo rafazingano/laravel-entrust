@@ -8,6 +8,19 @@ Route::prefix('admin')
     ->namespace('ConfrariaWeb\Entrust\Controllers')
     ->group(function () {
 
-        Route::resource('roles', 'RoleController');
+        Route::prefix('roles')
+            ->name('roles.')
+            ->group(function () {
+                Route::get('datatable', 'RoleController@datatables')->name('datatables');
+        });
 
+        Route::prefix('permissions')
+            ->name('permissions.')
+            ->group(function () {
+                Route::get('datatable', 'PermissionController@datatables')->name('datatables');
+        });
+
+        Route::resource('roles', 'RoleController');
+        Route::resource('permissions', 'PermissionController');
+    
     });

@@ -9,13 +9,14 @@ use ConfrariaWeb\Entrust\Repositories\PermissionRepository;
 use ConfrariaWeb\Entrust\Repositories\RoleRepository;
 use ConfrariaWeb\Entrust\Services\PermissionService;
 use ConfrariaWeb\Entrust\Services\RoleService;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Artisan;
+use ConfrariaWeb\Vendor\Traits\ProviderTrait;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class EntrustServiceProvider extends ServiceProvider
 {
+
+    use ProviderTrait;
 
     /**
      * Bootstrap services.
@@ -73,25 +74,6 @@ class EntrustServiceProvider extends ServiceProvider
             return new PermissionService($app->make(PermissionContract::class));
         });
 
-    }
-
-    protected function registerSeedsFrom($path)
-    {
-        if ($this->app->runningInConsole()) {
-            foreach (glob("$path/*.php") as $filename) {
-                include $filename;
-                //$classes = get_declared_classes();
-                //$class = end($classes);
-                $class = 'ConfrariaWeb\Entrust\Databases\Seeds\DatabaseSeeder';
-                $command = Request::server('argv', null);
-                if (is_array($command)) {
-                    $command = implode(' ', $command);
-                    if ($command == "artisan db:seed") {
-                        Artisan::call('db:seed', ['--class' => $class]);
-                    }
-                }
-            }
-        }
     }
 
 }

@@ -22,26 +22,6 @@ class RoleRepository implements RoleContract
             $obj->permissions()->sync($data['permissions']);
         }
 
-        if (isset($data['stepWhenCreatingUser'])) {
-            $obj->stepWhenCreatingUser()->sync($data['stepWhenCreatingUser']);
-        }
-
-        if (isset($data['steps'])) {
-            $obj->steps()->sync($data['steps']);
-        }
-
-        if (isset($data['tasksStatuses'])) {
-            $obj->tasksStatuses()->sync($data['tasksStatuses']);
-        }
-
-        if (isset($data['usersStatuses'])) {
-            $obj->usersStatuses()->sync($data['usersStatuses']);
-        }
-
-        if (isset($data['usersRoles'])) {
-            $obj->usersRoles()->sync($data['usersRoles']);
-        }
-
     }
 
     public function where(array $data, $take = null, $skip = false, $select = false)
