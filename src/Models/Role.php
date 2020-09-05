@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Config;
 
 class Role extends Model
 {
-
-
     protected $table = 'entrust_roles';
 
     protected $fillable = [
@@ -18,6 +16,7 @@ class Role extends Model
         'display_name',
         'description',
         'settings',
+        'account_id',
     ];
 
     protected $casts = [
@@ -32,7 +31,7 @@ class Role extends Model
     protected static function booted()
     {
         static::addGlobalScope(new RoleOrderByScope);
-        //static::addGlobalScope(new AccountRoleScope);
+        static::addGlobalScope(new AccountRoleScope);
     }
 
     public function __construct(array $attributes = [])

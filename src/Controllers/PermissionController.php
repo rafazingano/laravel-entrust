@@ -3,13 +3,11 @@
 namespace ConfrariaWeb\Entrust\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use ConfrariaWeb\Entrust\Requests\StorePermission;
 use ConfrariaWeb\Entrust\Requests\UpdatePermission;
-
-use Auth;
 use Illuminate\Support\Facades\Config;
+use Auth;
 
 class PermissionController extends Controller
 {
@@ -54,7 +52,7 @@ class PermissionController extends Controller
 
     public function index()
     {
-        return view(config('cw_entrust.views') . 'permissions.index');
+        return view(Config::get('cw_entrust.views') . 'permissions.index');
     }
 
     /**
@@ -64,7 +62,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view(config('cw_entrust.views') . 'permissions.create', $this->data);
+        return view(Config::get('cw_entrust.views') . 'permissions.create', $this->data);
     }
 
     /**
@@ -91,7 +89,7 @@ class PermissionController extends Controller
     public function show($id)
     {
         $this->data['permission'] = resolve('PermissionService')->find($id);
-        return view(config('cw_entrust.views') . 'permissions.show', $this->data);
+        return view(Config::get('cw_entrust.views') . 'permissions.show', $this->data);
     }
 
     /**
@@ -103,7 +101,7 @@ class PermissionController extends Controller
     public function edit($id)
     {
         $this->data['permission'] = resolve('PermissionService')->find($id);
-        return view(config('cw_entrust.views') . 'permissions.edit', $this->data);
+        return view(Config::get('cw_entrust.views') . 'permissions.edit', $this->data);
     }
 
     /**

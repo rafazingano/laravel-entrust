@@ -3,9 +3,10 @@
 namespace ConfrariaWeb\Entrust\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use ConfrariaWeb\Entrust\Requests\StoreRole;
+use ConfrariaWeb\Entrust\Requests\UpdateRole;
 use Yajra\DataTables\Facades\DataTables;
-
+use Illuminate\Support\Facades\Config;
 class RoleController extends Controller
 {
 
@@ -19,6 +20,12 @@ class RoleController extends Controller
     public function datatables(){
         $roles = resolve('RoleService')->all();
         return DataTables::of($roles)
+            ->editColumn('created_at', function ($roles) {
+                return $roles->created_at ? $roles->created_at->format('d/m/Y') : NULL;
+            })
+            ->editColumn('updated_at', function ($roles) {
+                return $roles->updated_at ? $roles->updated_at->format('d/m/Y') : NULL;
+            })
         ->addColumn('action', function ($role) {
             return '<div class="btn-group btn-group-sm float-right" role="group">
                 <a href="'.route('admin.roles.show', $role->id).'" class="btn btn-sm btn-info">
@@ -43,7 +50,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        return view(config('cw_entrust.views') . 'roles.index');
+        return view(Config::get('cw_entrust.views') . 'roles.index');
     }
 
     /**
@@ -54,7 +61,7 @@ class RoleController extends Controller
     public function create()
     {
         $this->data['permissions'] = resolve('PermissionService')->pluck();
-        return view(config('cw_entrust.views') . 'roles.create', $this->data);
+        return view(Config::get('cw_entrust.views') . 'roles.create', $this->data);
     }
 
     /**
@@ -63,7 +70,7 @@ class RoleController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRole $request)
     {
         $data = $request->all();
         $role = resolve('RoleService')->create($data);
@@ -81,7 +88,7 @@ class RoleController extends Controller
     public function show($id)
     {
         $this->data['role'] = resolve('RoleService')->find($id);
-        return view(config('cw_entrust.views') . 'roles.show', $this->data);
+        return view(Config::get('cw_entrust.views') . 'roles.show', $this->data);
     }
 
     /**
@@ -94,7 +101,7 @@ class RoleController extends Controller
     {
         $this->data['permissions'] = resolve('PermissionService')->pluck();
         $this->data['role'] = resolve('RoleService')->find($id);
-        return view(config('cw_entrust.views') . 'roles.edit', $this->data);
+        return view(Config::get('cw_entrust.views') . 'roles.edit', $this->data);
     }
 
     /**
@@ -104,7 +111,7 @@ class RoleController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRole $request, $id)
     {
         $role = resolve('RoleService')->update($request->all(), $id);
         return redirect()
