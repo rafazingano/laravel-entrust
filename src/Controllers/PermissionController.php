@@ -5,10 +5,14 @@ namespace ConfrariaWeb\Entrust\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use ConfrariaWeb\Entrust\Requests\StorePermission;
+use ConfrariaWeb\Entrust\Requests\UpdatePermission;
+
+use Auth;
+use Illuminate\Support\Facades\Config;
 
 class PermissionController extends Controller
 {
-
     protected $data;
 
     public function __construct()
@@ -16,18 +20,25 @@ class PermissionController extends Controller
         $this->data = [];
     }
 
-    public function datatables(){
+    public function datatables()
+    {
         $permissions = resolve('PermissionService')->all();
         return DataTables::of($permissions)
+        ->editColumn('created_at', function ($permissions) {
+            return $permissions->created_at ? $permissions->created_at->format('d/m/Y') : NULL;
+        })
+        ->editColumn('updated_at', function ($permissions) {
+            return $permissions->updated_at ? $permissions->updated_at->format('d/m/Y') : NULL;
+        })
         ->addColumn('action', function ($permission) {
             return '<div class="btn-group btn-group-sm float-right" role="group">
-                <a href="'.route('admin.permissions.show', $permission->id).'" class="btn btn-sm btn-info">
+                <a href="'.route('admin.permissions.show', $permission->id).'" class="btn btn-info">
                     <i class="glyphicon glyphicon-eye"></i> Ver
                 </a>
-                <a href="'.route('admin.permissions.edit', $permission->id).'" class="btn btn-sm btn-primary">
+                <a href="'.route('admin.permissions.edit', $permission->id).'" class="btn btn-primary">
                     <i class="glyphicon glyphicon-edit"></i> Editar
                 </a>
-                <a class="btn btn-sm btn-danger" href="'.route('admin.permissions.destroy', $permission->id).'" onclick="event.preventDefault();
+                <a class="btn btn-danger" href="'.route('admin.permissions.destroy', $permission->id).'" onclick="event.preventDefault();
                     document.getElementById(\'permissions-destroy-form-' . $permission->id . '\').submit();">
                     Deletar
                 </a>
@@ -62,7 +73,7 @@ class PermissionController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePermission $request)
     {
         $data = $request->all();
         $permission = resolve('PermissionService')->create($data);
@@ -102,7 +113,7 @@ class PermissionController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePermission $request, $id)
     {
         $permission = resolve('PermissionService')->update($request->all(), $id);
         return redirect()

@@ -4,7 +4,7 @@ namespace ConfrariaWeb\Entrust\Traits;
 
 use Illuminate\Support\Facades\Config;
 
-trait EntrustTrait
+trait EntrustUserTrait
 {
     public function roles()
     {
@@ -21,11 +21,11 @@ trait EntrustTrait
 
     public function hasRole($role)
     {
-        return $this->roles->contains('name', $role);
+        return ($this->isAdmin() || $this->roles->contains('name', $role));
     }
 
     public function hasPermission($permission)
     {
-        return ($this->roles->contains('name', 'administrator') || $this->permissions->contains('name', $permission));
+        return ($this->isAdmin() || $this->permissions->contains('name', $permission));
     }
 }

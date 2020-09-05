@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                @include(config('cw_entrust.views') . 'permissions.partials.list')
+                @include('entrust::permissions.partials.list')
             </div>
         </div>
     </div>
