@@ -19,7 +19,7 @@ class UpdateRole extends FormRequest
     {
         $role = Role::find($this->route()->parameter('role'));
         $accountUser = existsAccount()? (Auth::user()->account_id === $role->account_id) : true;
-        return Auth::user()->hasRole('admin.roles.edit') && $accountUser;
+        return Auth::user()->hasPermission('admin.roles.edit') && $accountUser;
     }
 
     /**

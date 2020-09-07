@@ -14,7 +14,7 @@ class StoreRole extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->hasRole('admin.roles.create');
+        return Auth::user()->hasPermission('admin.roles.create');
     }
 
     /**
