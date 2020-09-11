@@ -47,7 +47,7 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User', Config::get('cw_entrust.role_user_table'));
+        return $this->belongsToMany('App\Models\User', Config::get('cw_entrust.role_user_table'));
     }
 
 }

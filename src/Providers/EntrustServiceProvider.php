@@ -36,7 +36,7 @@ class EntrustServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/../../databases/Migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../Translations', 'entrust');
-        $this->publishes([__DIR__ . '/../../config/cw_entrust.php' => config_path('cw_entrust.php')], 'cw_entrust');
+        $this->publishes([__DIR__ . '/../../config/cw_entrust.php' => config_path('cw_entrust.php')], 'config');
         $this->registerSeedsFrom(__DIR__.'/../../databases/Seeds');
 
         Blade::directive('role', function($expression) {

@@ -8,7 +8,7 @@ return [
         'emails' => ['rafazingano@gmail.com', '54545455no@gmail.com'],
     ],
 
-    'user' => 'App\User',
+    'user' => 'App\Models\User',
     'users_table' => 'users',
 
     'role' => 'ConfrariaWeb\Entrust\Models\Role',
