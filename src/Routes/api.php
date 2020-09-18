@@ -6,9 +6,9 @@ Route::middleware(['auth:api'])
     ->name('api.')
     ->prefix('api')
     ->group(function () {
-        Route::name('entrusts.')
-            ->prefix('entrusts')
-            ->namespace('ConfrariaWeb\Entrust\Controllers')
+        Route::name('acls.')
+            ->prefix('acls')
+            ->namespace('ConfrariaWeb\Acl\Controllers')
             ->group(function () {
 
                 Route::name('roles.')

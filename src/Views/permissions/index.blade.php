@@ -1,4 +1,4 @@
-@extends(config('cw_entrust.layout'))
+@extends(config('cw_acl.layout'))
 @section('title', __('role::titles.permissions'))
 @section('content')
     <div class="container">
@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                @include('entrust::permissions.partials.list')
+                @include('acl::permissions.partials.list')
             </div>
         </div>
     </div>

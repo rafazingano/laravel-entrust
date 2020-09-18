@@ -1,9 +1,9 @@
 <?PHP
 
-namespace ConfrariaWeb\Entrust\Repositories;
+namespace ConfrariaWeb\Acl\Repositories;
 
-use ConfrariaWeb\Entrust\Contracts\RoleContract;
-use ConfrariaWeb\Entrust\Models\Role;
+use ConfrariaWeb\Acl\Contracts\RoleContract;
+use ConfrariaWeb\Acl\Models\Role;
 use ConfrariaWeb\Vendor\Traits\RepositoryTrait;
 
 class RoleRepository implements RoleContract

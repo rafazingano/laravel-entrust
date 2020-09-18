@@ -1,4 +1,4 @@
-@extends(config('cw_entrust.layout'))
+@extends(config('cw_acl.layout'))
 @section('title', __('role::titles.roles'))
 @section('content')
     <div class="container">
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-12">
                 {!! Form::open(['route' => 'admin.roles.store']) !!}
-                @include(config('cw_entrust.views') . 'roles.partials.form')
+                @include(config('cw_acl.views') . 'roles.partials.form')
                 {!! Form::close() !!}
             </div>
         </div>

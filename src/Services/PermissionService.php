@@ -1,8 +1,8 @@
 <?PHP
 
-namespace ConfrariaWeb\Entrust\Services;
+namespace ConfrariaWeb\Acl\Services;
 
-use ConfrariaWeb\Entrust\Contracts\PermissionContract;
+use ConfrariaWeb\Acl\Contracts\PermissionContract;
 use ConfrariaWeb\Vendor\Traits\ServiceTrait;
 
 class PermissionService

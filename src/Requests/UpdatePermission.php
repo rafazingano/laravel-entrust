@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Requests;
+namespace ConfrariaWeb\Acl\Requests;
 
 use Auth;
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,7 +29,7 @@ class UpdatePermission extends FormRequest
         return [
             'name' => [
                 'required',
-                Rule::unique(Config::get('cw_entrust.permissions_table'))->ignore($this->route()->parameter('permission')),
+                Rule::unique(Config::get('cw_acl.permissions_table'))->ignore($this->route()->parameter('permission')),
                 'max:255'
             ],
             'display_name' => 'required|max:255',

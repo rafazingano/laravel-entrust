@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Middleware;
+namespace ConfrariaWeb\Acl\Middleware;
 
 use Closure;
 

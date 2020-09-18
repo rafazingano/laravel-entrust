@@ -1,10 +1,10 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Controllers;
+namespace ConfrariaWeb\Acl\Controllers;
 
 use App\Http\Controllers\Controller;
-use ConfrariaWeb\Entrust\Requests\StoreRole;
-use ConfrariaWeb\Entrust\Requests\UpdateRole;
+use ConfrariaWeb\Acl\Requests\StoreRole;
+use ConfrariaWeb\Acl\Requests\UpdateRole;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Config;
 class RoleController extends Controller
@@ -50,7 +50,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        return view(Config::get('cw_entrust.views') . 'roles.index');
+        return view(Config::get('cw_acl.views') . 'roles.index');
     }
 
     /**
@@ -61,7 +61,7 @@ class RoleController extends Controller
     public function create()
     {
         $this->data['permissions'] = resolve('PermissionService')->pluck();
-        return view(Config::get('cw_entrust.views') . 'roles.create', $this->data);
+        return view(Config::get('cw_acl.views') . 'roles.create', $this->data);
     }
 
     /**
@@ -88,7 +88,7 @@ class RoleController extends Controller
     public function show($id)
     {
         $this->data['role'] = resolve('RoleService')->find($id);
-        return view(Config::get('cw_entrust.views') . 'roles.show', $this->data);
+        return view(Config::get('cw_acl.views') . 'roles.show', $this->data);
     }
 
     /**
@@ -101,7 +101,7 @@ class RoleController extends Controller
     {
         $this->data['permissions'] = resolve('PermissionService')->pluck();
         $this->data['role'] = resolve('RoleService')->find($id);
-        return view(Config::get('cw_entrust.views') . 'roles.edit', $this->data);
+        return view(Config::get('cw_acl.views') . 'roles.edit', $this->data);
     }
 
     /**

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['web', 'auth'])
-    ->namespace('ConfrariaWeb\Entrust\Controllers')
+    ->namespace('ConfrariaWeb\Acl\Controllers')
     ->group(function () {
 
         Route::prefix('roles')

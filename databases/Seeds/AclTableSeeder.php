@@ -1,5 +1,5 @@
 <?php
-namespace ConfrariaWeb\Entrust\Databases\Seeds;
+namespace ConfrariaWeb\Acl\Databases\Seeds;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\Seeder;
@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
     private function createRoles()
     {
-        $roles_table = config('cw_entrust.roles_table');
+        $roles_table = config('cw_acl.roles_table');
         $roles = [
             [
                 'name' => 'administrator',
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
     private function createPermissions()
     {
-        $permissions_table = config('cw_entrust.permissions_table');
+        $permissions_table = config('cw_acl.permissions_table');
         $permissions = [
             [
                 'name' => 'admin.roles.index',
@@ -83,15 +83,15 @@ class DatabaseSeeder extends Seeder
 
     private function truncateTables()
     {
-        //if ($this->command->confirm('Deseja truncar todas as tabelas referentes ao entrust?')) {
-            $this->command->info('Fazendo um truncate nas tabelas entrusts, sai da frente... ;/');
+        //if ($this->command->confirm('Deseja truncar todas as tabelas referentes ao acl?')) {
+            $this->command->info('Fazendo um truncate nas tabelas acls, sai da frente... ;/');
             Schema::disableForeignKeyConstraints();
-            DB::table(config('cw_entrust.role_user_table'))->truncate();
-            DB::table(config('cw_entrust.permission_role_table'))->truncate();
-            DB::table(config('cw_entrust.roles_table'))->truncate();
-            DB::table(config('cw_entrust.permissions_table'))->truncate();
+            DB::table(config('cw_acl.role_user_table'))->truncate();
+            DB::table(config('cw_acl.permission_role_table'))->truncate();
+            DB::table(config('cw_acl.roles_table'))->truncate();
+            DB::table(config('cw_acl.permissions_table'))->truncate();
             Schema::enableForeignKeyConstraints();
-            $this->command->info('Pronto, truncates feitos em entrust, acho que com sucesso :D');
+            $this->command->info('Pronto, truncates feitos em acl, acho que com sucesso :D');
         //}
     }
 }

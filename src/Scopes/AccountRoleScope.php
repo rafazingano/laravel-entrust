@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Scopes;
+namespace ConfrariaWeb\Acl\Scopes;
 
 use Auth;
 use Illuminate\Database\Eloquent\Scope;
@@ -16,8 +16,8 @@ class AccountRoleScope implements Scope
         $accountID = Cache::get('accountID');
         if (!app()->runningInConsole() && existsAccount()) {
             $builder->where(function ($query) use($accountID){
-                $query->where(Config::get('cw_entrust.roles_table') . '.account_id', $accountID)
-                    ->orWhereNull(Config::get('cw_entrust.roles_table') . '.account_id');
+                $query->where(Config::get('cw_acl.roles_table') . '.account_id', $accountID)
+                    ->orWhereNull(Config::get('cw_acl.roles_table') . '.account_id');
             });
         }
     }

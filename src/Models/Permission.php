@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Models;
+namespace ConfrariaWeb\Acl\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Config;
 class Permission extends Model
 {
 
-    protected $table = 'entrust_permissions';
+    protected $table = 'acl_permissions';
 
     protected $fillable = [
         'name',
@@ -19,12 +19,12 @@ class Permission extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = Config::get('cw_entrust.permissions_table');
+        $this->table = Config::get('cw_acl.permissions_table');
     }
 
     public function roles()
     {
-        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Role', Config::get('cw_entrust.permission_role_table'));
+        return $this->belongsToMany('ConfrariaWeb\Acl\Models\Role', Config::get('cw_acl.permission_role_table'));
     }
 
 }

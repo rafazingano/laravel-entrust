@@ -1,11 +1,11 @@
 {
-    "name": "confrariaweb/laravel-entrust",
+    "name": "confrariaweb/laravel-acl",
     "version": "dev-master",
     "description": "laravel access control package - ACL",
     "keywords": [
         "acl",
         "access control",
-        "entrust",
+        "acl",
         "framework",
         "laravel"
     ],
@@ -18,6 +18,7 @@
         }
     ],
     "require": {
+        "confrariaweb/laravel-user": "dev-master",
         "confrariaweb/laravel-vendor": "dev-master",
         "laravelcollective/html": ">=6.0",
         "staudenmeir/eloquent-has-many-deep": "^1.12",
@@ -25,14 +26,14 @@
     },
     "autoload": {
         "psr-4": {
-            "ConfrariaWeb\\Entrust\\": "src",
-            "ConfrariaWeb\\Entrust\\Databases\\Seeds\\": "databases/Seeds"
+            "ConfrariaWeb\\Acl\\": "src",
+            "ConfrariaWeb\\Acl\\Databases\\Seeds\\": "databases/Seeds"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ConfrariaWeb\\Entrust\\Providers\\EntrustServiceProvider"
+                "ConfrariaWeb\\Acl\\Providers\\AclServiceProvider"
             ]
         }
     },

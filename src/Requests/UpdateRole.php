@@ -1,9 +1,9 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Requests;
+namespace ConfrariaWeb\Acl\Requests;
 
 use Auth;
-use ConfrariaWeb\Entrust\Models\Role;
+use ConfrariaWeb\Acl\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Config;
@@ -32,7 +32,7 @@ class UpdateRole extends FormRequest
         return [
             'name' => [
                 'required',
-                Rule::unique(Config::get('cw_entrust.roles_table'))->ignore($this->route()->parameter('role')),
+                Rule::unique(Config::get('cw_acl.roles_table'))->ignore($this->route()->parameter('role')),
                 'max:255'
             ],
             'display_name' => 'required|max:255',

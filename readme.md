@@ -1,30 +1,30 @@
-# Package Entrust Laravel (ACL)
+# Package ACL Laravel
 This is a simple, easy to use access control (ACL) package for laravel.
 
 Package page: 
-[https://confrariaweb.github.io/laravel-entrust](https://confrariaweb.github.io/laravel-entrust)
+[https://confrariaweb.github.io/laravel-acl](https://confrariaweb.github.io/laravel-acl)
 ## Package installation
 > Before starting, you need to make sure that the database access settings are configured.
 
 
 In your terminal just use the command line below.
 ```php
-composer require confrariaweb/laravel-entrust
+composer require confrariaweb/laravel-acl
 ```
 After the installation is complete, add the following item to the array at app/http/kernel.php array $routeMiddleware.
 ```php
-'check.permission' => \ConfrariaWeb\Entrust\Middleware\CheckPermission::class,
+'check.permission' => \ConfrariaWeb\Acl\Middleware\CheckPermission::class,
 ```
 The next configuration step you should only use if you are not using the "confrariaweb / laravel-user" package, if you are using this package there is no need to implement the configuration below as it is already included in the "laravel-user" package.
 ```php
 class User extends Authenticatable
 {
 	//add this call to the application's user model
-	use \ConfrariaWeb\Entrust\Traits\EntrustTrait;
+	use \ConfrariaWeb\Acl\Traits\AclTrait;
 ```
 The next step is to place the configuration file in the "/config" directory.
 ```php
-php artisan vendor:publish --provider="ConfrariaWeb\Entrust\Providers\EntrustServiceProvider"
+php artisan vendor:publish --provider="ConfrariaWeb\Acl\Providers\AclServiceProvider"
 ```
 We are almost there, the next commands are to restructure the configuration cache and run the migration of the tables respectively.
 At the command terminal, type the following commands.

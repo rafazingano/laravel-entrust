@@ -1,4 +1,4 @@
-@extends(config('cw_entrust.layout'))
+@extends(config('cw_acl.layout'))
 @section('title', __('permission::titles.permissions'))
 @section('content')
     <div class="container">
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-12">
                 {!! Form::model($permission, ['route' => ['admin.permissions.update', $permission->id], 'method' => 'put']) !!}
-                    @include(config('cw_entrust.views') . 'permissions.partials.form')
+                    @include(config('cw_acl.views') . 'permissions.partials.form')
                 {!! Form::close() !!}
             </div>
         </div>

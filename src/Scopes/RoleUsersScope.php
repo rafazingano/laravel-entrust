@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Scopes;
+namespace ConfrariaWeb\Acl\Scopes;
 
 
 use Illuminate\Database\Eloquent\Scope;

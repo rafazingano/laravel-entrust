@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Commands;
+namespace ConfrariaWeb\Acl\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Schema;
@@ -12,7 +12,7 @@ class CheckPackage extends Command
      *
      * @var string
      */
-    protected $signature = 'entrust:check-package';
+    protected $signature = 'acl:check-package';
 
     /**
      * The console command description.

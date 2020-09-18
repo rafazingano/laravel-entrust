@@ -1,5 +1,5 @@
 <?php
-namespace ConfrariaWeb\Entrust\Resources;
+namespace ConfrariaWeb\Acl\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

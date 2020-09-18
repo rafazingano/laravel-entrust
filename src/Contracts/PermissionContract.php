@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Contracts;
+namespace ConfrariaWeb\Acl\Contracts;
 
 interface PermissionContract
 {

@@ -1,21 +1,21 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Traits;
+namespace ConfrariaWeb\Acl\Traits;
 
 use Illuminate\Support\Facades\Config;
 
-trait EntrustUserTrait
+trait AclUserTrait
 {
     public function roles()
     {
-        return $this->belongsToMany(Config::get('cw_entrust.role'), Config::get('cw_entrust.role_user_table'), Config::get('cw_entrust.user_foreign_key'));
+        return $this->belongsToMany(Config::get('cw_acl.role'), Config::get('cw_acl.role_user_table'), Config::get('cw_acl.user_foreign_key'));
     }
 
     public function permissions()
     {
         return $this->hasManyDeep(
-            Config::get('cw_entrust.permission'),
-            [Config::get('cw_entrust.role_user_table'), Config::get('cw_entrust.role'), Config::get('cw_entrust.permission_role_table')]
+            Config::get('cw_acl.permission'),
+            [Config::get('cw_acl.role_user_table'), Config::get('cw_acl.role'), Config::get('cw_acl.permission_role_table')]
         );
     }
 

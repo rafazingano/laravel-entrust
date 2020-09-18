@@ -1,6 +1,6 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Scopes;
+namespace ConfrariaWeb\Acl\Scopes;
 
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +12,7 @@ class RoleOrderByScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         if (!app()->runningInConsole()) {
-            $builder->orderBy(Config::get('cw_entrust.roles_table') . '.display_name', 'asc');
+            $builder->orderBy(Config::get('cw_acl.roles_table') . '.display_name', 'asc');
         }
     }
 }

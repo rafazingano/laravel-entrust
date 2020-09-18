@@ -1,8 +1,8 @@
 <?PHP
 
-namespace ConfrariaWeb\Entrust\Services;
+namespace ConfrariaWeb\Acl\Services;
 
-use ConfrariaWeb\Entrust\Contracts\RoleContract;
+use ConfrariaWeb\Acl\Contracts\RoleContract;
 use ConfrariaWeb\Vendor\Traits\ServiceTrait;
 
 class RoleService

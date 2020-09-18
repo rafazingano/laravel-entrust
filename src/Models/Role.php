@@ -1,15 +1,15 @@
 <?php
 
-namespace ConfrariaWeb\Entrust\Models;
+namespace ConfrariaWeb\Acl\Models;
 
-use ConfrariaWeb\Entrust\Scopes\AccountRoleScope;
-use ConfrariaWeb\Entrust\Scopes\RoleOrderByScope;
+use ConfrariaWeb\Acl\Scopes\AccountRoleScope;
+use ConfrariaWeb\Acl\Scopes\RoleOrderByScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 
 class Role extends Model
 {
-    protected $table = 'entrust_roles';
+    protected $table = 'acl_roles';
 
     protected $fillable = [
         'name',
@@ -37,17 +37,17 @@ class Role extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = Config::get('cw_entrust.roles_table');
+        $this->table = Config::get('cw_acl.roles_table');
     }
 
     public function permissions()
     {
-        return $this->belongsToMany('ConfrariaWeb\Entrust\Models\Permission', Config::get('cw_entrust.permission_role_table'));
+        return $this->belongsToMany('ConfrariaWeb\Acl\Models\Permission', Config::get('cw_acl.permission_role_table'));
     }
 
     public function users()
     {
-        return $this->belongsToMany('App\User', Config::get('cw_entrust.role_user_table'));
+        return $this->belongsToMany('App\Models\User', Config::get('cw_acl.role_user_table'));
     }
 
 }
