@@ -1,6 +1,6 @@
 {
     "name": "confrariaweb/laravel-acl",
-    "version": "dev-master",
+    "version": "1.0.0",
     "description": "laravel access control package - ACL",
     "keywords": [
         "acl",
@@ -18,8 +18,8 @@
         }
     ],
     "require": {
-        "confrariaweb/laravel-user": "dev-master",
-        "confrariaweb/laravel-vendor": "dev-master",
+        "confrariaweb/laravel-user": "1.0.0",
+        "confrariaweb/laravel-vendor": "1.0.0",
         "laravelcollective/html": ">=6.0",
         "staudenmeir/eloquent-has-many-deep": "^1.12",
         "yajra/laravel-datatables-oracle":"~9.0"
