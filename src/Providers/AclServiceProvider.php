@@ -9,14 +9,11 @@ use ConfrariaWeb\Acl\Repositories\PermissionRepository;
 use ConfrariaWeb\Acl\Repositories\RoleRepository;
 use ConfrariaWeb\Acl\Services\PermissionService;
 use ConfrariaWeb\Acl\Services\RoleService;
-use ConfrariaWeb\Vendor\Traits\ProviderTrait;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AclServiceProvider extends ServiceProvider
 {
-
-    use ProviderTrait;
 
     /**
      * Bootstrap services.
